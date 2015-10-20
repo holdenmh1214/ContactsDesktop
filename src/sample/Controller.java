@@ -6,7 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import jodd.json.JsonSerializer;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -42,6 +45,7 @@ public class Controller implements Initializable {
             nameField.setText("");
             phoneField.setText("");
             emailField.setText("");
+            saveContacts(items);
         }
     }
 
@@ -52,6 +56,23 @@ public class Controller implements Initializable {
         nameField.setText("");
         phoneField.setText("");
         emailField.setText("");
+
+
+        saveContacts(items);
     }
 
+
+    static void saveContacts(ObservableList<Contact> items) {
+        File f = new File("Contacts.json");
+        JsonSerializer serializer = new JsonSerializer();
+        String contentToSave = serializer.serialize(items);
+
+        try {
+            FileWriter fw = new FileWriter(f);
+            fw.write(contentToSave);
+            fw.close();
+        } catch (Exception e) {
+
+        }
+    }
 }

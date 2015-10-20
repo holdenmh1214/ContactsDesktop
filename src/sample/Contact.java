@@ -19,4 +19,16 @@ public class Contact {
     public String toString(){
         return String.format("%s  |  %s  |  %s", name, phone, email);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }
